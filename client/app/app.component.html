@@ -1,4 +1,4 @@
-<h1>Catalogue</h1>
+<h1>Product Catalog</h1>
 
 
 <nav class="navbar navbar-default" role="navigation">
@@ -10,14 +10,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Title</a>
+        <a class="navbar-brand" href="#">@shturm #100019486</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
-            <li ><a href="#"><span class="glyphicon glyphicon-th-list"></span>Browse</a></li>
-            <li class="active"><a href="#"><span class="glyphicon glyphicon-plus"></span>New</a></li>
+            <li [routerLinkActive]="['active']"><a routerLink="/browse" ><span class="glyphicon glyphicon-th-list"></span>Browse</a></li>
+            <li [routerLinkActive]="['active']"><a routerLink="/new"><span class="glyphicon glyphicon-plus"></span>New</a></li>
         </ul>
         <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
@@ -28,15 +28,15 @@
         <ul class="nav navbar-nav navbar-right">
             <li>
                 
-                <a href="#"><span class="glyphicon glyphicon-user"></span>Log in</a></li>
+                <a routerLink="/login"><span class="glyphicon glyphicon-user"></span>Log in</a></li>
             <li class="dropdown">
                
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-user"></span>user@mail.tld <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Logout</a></li>
+                    <li ><a routerLink="/profile" ><span class="glyphicon glyphicon-user"></span>Profile</a></li>
+                    <li ><a ><span class="glyphicon glyphicon-off"></span>Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -44,4 +44,4 @@
 </nav>
 
 
-<ddk-product></ddk-product>
+<router-outlet></router-outlet>

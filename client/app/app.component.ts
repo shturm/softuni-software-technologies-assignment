@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { ProductComponent }  from './product.component';
+import { ProductComponent }  from './components/product/product.component';
 
 @Component({
-    selector: 'ddk-app',
+    selector: 'app-app',
     templateUrl: 'app/app.component.html',
     directives: [ProductComponent]
 })
