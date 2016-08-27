@@ -10,6 +10,7 @@ import { NewProductPageComponent } from './pages/newProduct/newProductPage.compo
 import { BrowsePageComponent } from './pages/browse/browsePage.component';
 import { LoginPageComponent } from './pages/login/loginPage.component';
 import { RegisterPageComponent } from './pages/register/registerPage.component';
+import { ProductDetailsPageComponent } from './pages/productDetails/productDetailsPage.component';
 
 @NgModule({
   imports: [ BrowserModule, FormsModule, routing],
@@ -24,7 +25,8 @@ import { RegisterPageComponent } from './pages/register/registerPage.component';
     NewProductPageComponent,
     BrowsePageComponent,
     LoginPageComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    ProductDetailsPageComponent
   ],
   bootstrap: [ AppComponent ]
 })
