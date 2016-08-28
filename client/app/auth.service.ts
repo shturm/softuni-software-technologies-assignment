@@ -30,4 +30,9 @@ export class AuthService {
         this.router.navigate(['login']);
     }
 
+    register(email: string, password: string) {      
+        // make api call
+        this.login(email, password);
+    }
+
 }

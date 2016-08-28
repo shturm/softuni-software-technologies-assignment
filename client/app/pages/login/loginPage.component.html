@@ -5,18 +5,21 @@
 
             <div class="form-group form-group-lg">
                 <label for="">Email</label>
-                <input type="text" class="form-control" name="email" ngModel placeholder="email@domain.tld">
+                <input type="email" class="form-control" name="email" ngModel placeholder="email@domain.tld" required>
             </div>
 
             <div class="form-group form-group-lg">
                 <label for="">Password</label>
-                <input type="password" class="form-control" name="password" ngModel placeholder="password">
+                <input type="password" class="form-control" name="password" ngModel placeholder="password" required>
             </div>
 
 
-
+           
             <button type="submit" class="btn btn-success">Log in</button>
+            or <a routerLink="/register">Register</a>
         </form>
 
     </div>
+    
+
 </div>

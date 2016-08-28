@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+// import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService} from '../../auth.service';
 
 @Component({
@@ -7,7 +8,10 @@ import { AuthService} from '../../auth.service';
     directives: []
 })
 export class LoginPageComponent { 
-    constructor(private auth: AuthService) {    }
+
+    constructor(private auth: AuthService) {
+       
+    }
     
     logIn(credentials: any) {
         console.log(credentials);
