@@ -27,12 +27,17 @@ export class AuthService {
 
     logout() {
         localStorage.removeItem('token');
+        localStorage.removeItem('user.email');
         this.router.navigate(['login']);
     }
 
     register(email: string, password: string) {      
         // make api call
         this.login(email, password);
+    }
+
+    updateProfile(profile: {email: string}) {
+        localStorage.setItem('user.email', profile.email);
     }
 
 }
