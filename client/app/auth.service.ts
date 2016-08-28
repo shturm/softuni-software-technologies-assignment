@@ -40,4 +40,7 @@ export class AuthService {
         localStorage.setItem('user.email', profile.email);
     }
 
+    isAdmin() {
+        return !!localStorage.getItem('user.admin');
+    }
 }
