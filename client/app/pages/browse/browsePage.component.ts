@@ -15,8 +15,7 @@ export class BrowsePageComponent implements OnInit {
     products: Product[] = [];
 
     constructor(private productsService: ProductsService,
-                private router: Router
-) {
+                private router: Router) {
         this.products = productsService.getProducts();
      }
 

@@ -4,6 +4,8 @@ import { FormsModule }   from '@angular/forms';
 
 import { AppComponent }  from './app.component';
 import { ProductComponent }  from './components/product/product.component';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
 
 import { routing } from './app.routes';
 import { NewProductPageComponent } from './pages/newProduct/newProductPage.component';
@@ -11,22 +13,25 @@ import { BrowsePageComponent } from './pages/browse/browsePage.component';
 import { LoginPageComponent } from './pages/login/loginPage.component';
 import { RegisterPageComponent } from './pages/register/registerPage.component';
 import { ProductDetailsPageComponent } from './pages/productDetails/productDetailsPage.component';
+import { ProfilePageComponent } from './pages/profile/profilePage.component';
+
 
 @NgModule({
   imports: [ BrowserModule, FormsModule, routing],
+  providers: [AuthService, AuthGuard],
   declarations: [ 
     // main
     AppComponent,
-    
-    // reusable components
     ProductComponent,
+    // AuthService,
     
     // page components
     NewProductPageComponent,
     BrowsePageComponent,
     LoginPageComponent,
     RegisterPageComponent,
-    ProductDetailsPageComponent
+    ProductDetailsPageComponent,
+    ProfilePageComponent
   ],
   bootstrap: [ AppComponent ]
 })

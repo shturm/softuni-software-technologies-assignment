@@ -3,18 +3,22 @@
     <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
         <form action="" method="POST" role="form">
 
-            <div class="input-group input-group-lg">
-                <span class="input-group-addon" id="basic-addon1">&nbsp;&nbsp;</span>
+            
+            <label for="sku">SKU</label>
+            <div class="input-group input-group-lg">    
+                <!--<span class="input-group-addon" id="basic-addon1">&nbsp;&nbsp;</span>-->
                 <input type="text" class="form-control" placeholder="SKU" aria-describedby="basic-addon1" [(ngModel)]="product.sku" name="sku">
             </div>
 
+            <label for="name">Name</label>
             <div class="input-group input-group-lg">
-                <span class="input-group-addon" id="basic-addon1">&nbsp;&nbsp;</span>
+                <!--<span class="input-group-addon" id="basic-addon1">&nbsp;&nbsp;</span>-->
                 <input type="text" class="form-control" placeholder="Name" aria-describedby="basic-addon1" [(ngModel)]="product.name" name="name">
             </div>
 
+            <label for="price">Price</label>
             <div class="input-group input-group-lg">
-                <span class="input-group-addon" id="basic-addon1">#</span>
+                <!--<span class="input-group-addon" id="basic-addon1">#</span>-->
                 <input type="number" class="form-control" placeholder="Price" aria-describedby="basic-addon1" [(ngModel)]="product.price" name="price">
             </div>
 
