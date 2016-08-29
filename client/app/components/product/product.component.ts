@@ -8,6 +8,9 @@ export class ProductComponent implements OnInit{
     @Input()
     product: Product;
 
+    @Input()
+    editable: boolean = true;
+    
     ngOnInit() {
        
     }

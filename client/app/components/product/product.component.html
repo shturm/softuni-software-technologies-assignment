@@ -7,26 +7,27 @@
             <label for="sku">SKU</label>
             <div class="input-group input-group-lg">    
                 <!--<span class="input-group-addon" id="basic-addon1">&nbsp;&nbsp;</span>-->
-                <input type="text" class="form-control" placeholder="SKU" aria-describedby="basic-addon1" [(ngModel)]="product.sku" name="sku">
+                <input type="text" class="form-control" placeholder="SKU" aria-describedby="basic-addon1" [(ngModel)]="product.sku" name="sku" [disabled]="!editable">
             </div>
 
             <label for="name">Name</label>
             <div class="input-group input-group-lg">
                 <!--<span class="input-group-addon" id="basic-addon1">&nbsp;&nbsp;</span>-->
-                <input type="text" class="form-control" placeholder="Name" aria-describedby="basic-addon1" [(ngModel)]="product.name" name="name">
+                <input type="text" class="form-control" placeholder="Name" aria-describedby="basic-addon1" [(ngModel)]="product.name" name="name" [disabled]="!editable">
             </div>
 
             <label for="price">Price</label>
             <div class="input-group input-group-lg">
                 <!--<span class="input-group-addon" id="basic-addon1">#</span>-->
-                <input type="number" class="form-control" placeholder="Price" aria-describedby="basic-addon1" [(ngModel)]="product.price" name="price">
+                <input type="number" class="form-control" placeholder="Price" aria-describedby="basic-addon1" [(ngModel)]="product.price" name="price" [disabled]="!editable">
             </div>
 
-            <div class="btn-group btn-group-lg" role="group" aria-label="...">
+            <div class="btn-group btn-group-lg" role="group" aria-label="..." *ngIf="editable">
                 <button type="button" class="btn btn-success">Save</button>
             </div>
 
         </form>
 
+        
     </div>
 </div>

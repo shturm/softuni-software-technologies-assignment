@@ -1,7 +1,7 @@
 <h2>Product Details</h2>
 
 <h3>{{sku}}</h3>
-<app-product *ngIf="product" [product]="product"></app-product>
+<app-product *ngIf="product" [editable]="userIsAdmin()" [product]="product"></app-product>
 
 
 <div class="container">

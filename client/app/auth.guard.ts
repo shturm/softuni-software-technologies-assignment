@@ -16,7 +16,10 @@ export class AuthGuard implements CanActivate {
       if (state.url === '/new' && !this.auth.isAdmin()) {
         return false;
       }
-      
+      if (state.url === '/users' && !this.auth.isAdmin()) {
+        return false;
+      }
+
       return true;
     }
 

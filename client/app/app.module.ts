@@ -14,6 +14,7 @@ import { LoginPageComponent } from './pages/login/loginPage.component';
 import { RegisterPageComponent } from './pages/register/registerPage.component';
 import { ProductDetailsPageComponent } from './pages/productDetails/productDetailsPage.component';
 import { ProfilePageComponent } from './pages/profile/profilePage.component';
+import { UsersPageComponent } from './pages/users/usersPage.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ProfilePageComponent } from './pages/profile/profilePage.component';
     LoginPageComponent,
     RegisterPageComponent,
     ProductDetailsPageComponent,
-    ProfilePageComponent
+    ProfilePageComponent,
+    UsersPageComponent
   ],
   bootstrap: [ AppComponent ]
 })
