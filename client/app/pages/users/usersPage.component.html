@@ -18,12 +18,22 @@
                         <td>
                             <button type="button" *ngIf="!u.activated"
                                     class="btn btn-success"
-                                    (click)="activateUser(u.email)">Activate</button>                            
-                            <span *ngIf="u.activated" class="label label-primary">Active</span>
-                            <span *ngIf="u.admin" class="label label-danger">
+                                    (click)="setUserActive(u.email, true)">Activate</button>
+                                                        
+                            <span *ngIf="u.activated" class="label label-primary">
+                                Active
+                                <span (click)="setUserActive(u.email, false)" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            </span>
+
+                            <span *ngIf="u.admin" (click)="setUserAdmin(u.email, false)" class="label label-danger">
                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                                 admin
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             </span>
+
+                            <button type="button" *ngIf="u.activated && !u.admin"
+                                    class="btn btn-success"
+                                    (click)="setUserAdmin(u.email, true)">Promote to admin</button>
 
                         </td>
                     </tr>

@@ -1,7 +1,7 @@
 import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthGuard } from './auth.guard';
+import { AuthGuard, AdminGuard } from './auth.guard';
 
 import { NewProductPageComponent }      from './pages/newProduct/newProductPage.component';
 import { BrowsePageComponent }      from './pages/browse/browsePage.component';
@@ -13,8 +13,8 @@ import { ProductDetailsPageComponent } from './pages/productDetails/productDetai
 
 const appRoutes: Routes = [
     {path: 'browse', component: BrowsePageComponent, canActivate: [AuthGuard]  },
-    {path: 'users', component: UsersPageComponent, canActivate: [AuthGuard]  },
-    {path: 'new', component: NewProductPageComponent, canActivate: [AuthGuard]  },
+    {path: 'users', component: UsersPageComponent, canActivate: [AuthGuard, AdminGuard]  },
+    {path: 'new', component: NewProductPageComponent, canActivate: [AuthGuard, AdminGuard]  },
     {path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard]  },
     {path: 'register', component: RegisterPageComponent },
     {path: 'login', component: LoginPageComponent },

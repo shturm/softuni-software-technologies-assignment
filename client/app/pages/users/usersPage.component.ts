@@ -16,8 +16,24 @@ export class UsersPageComponent implements OnInit {
         this.users = this.usersService.getUsers();
      }
 
-    activateUser(email: string) {
-        this.usersService.activateUser(email);
+    setUserActive(email: string, flag: boolean) {
+        let msg = 'Activate user ?';
+        if (!flag) msg = 'Deactivate user ?';
+        if (confirm(msg)) {
+            this.usersService.setUserActive(email, flag);
+        }
+
+        this.users = this.usersService.getUsers();
+    }
+
+    setUserAdmin(email: string, flag: boolean) {
+        let msg: string = 'Promote user to admin ?';
+        if (!flag) msg = 'Demote user from admin ?';
+
+        if (confirm(msg)) {
+            this.usersService.setUserAdmin(email, flag);
+        }
+        
         this.users = this.usersService.getUsers();
     }
 

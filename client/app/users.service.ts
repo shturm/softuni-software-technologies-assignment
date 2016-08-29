@@ -15,10 +15,20 @@ export class UsersService {
         return UsersService.users;
     }
 
-    activateUser(email: string) {
+    setUserActive(email: string, flag: boolean) {
         UsersService.users.forEach((u: any) => {
             if (u.email === email) {
-                u.activated = true;
+                u.activated = flag;
+            }
+        });
+    }
+
+
+
+    setUserAdmin(email: string, adminFlag: boolean) {
+        UsersService.users.forEach((u: any) => {
+            if (u.email === email) {
+                u.admin = adminFlag;
             }
         });
     }

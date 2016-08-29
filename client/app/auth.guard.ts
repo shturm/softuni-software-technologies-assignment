@@ -11,18 +11,27 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot): boolean {
     
     if (this.auth.isLoggedIn()) {
-    
-      // move to separate guard if list goes on
-      if (state.url === '/new' && !this.auth.isAdmin()) {
-        return false;
-      }
-      if (state.url === '/users' && !this.auth.isAdmin()) {
-        return false;
-      }
-
       return true;
     }
 
     this.router.navigate(['login']);
+  }
+}
+
+@Injectable()
+export class AdminGuard implements CanActivate {
+  constructor(private auth: AuthService,
+              private router: Router) { }
+
+  canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot): boolean {
+    if (!this.auth.isAdmin()) {
+      alert('To access this page you need to be admin');
+      return false;
+    }
+
+    return true;
+  }
+
+    
   }
 }

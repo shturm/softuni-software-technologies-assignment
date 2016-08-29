@@ -22,6 +22,7 @@ export class BrowsePageComponent implements OnInit {
     gotoProduct(sku: string) {
         this.router.navigate(['browse', sku]);
     }
+
     ngOnInit() { }
 
 }

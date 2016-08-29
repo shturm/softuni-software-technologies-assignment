@@ -16,7 +16,9 @@ export class ProductDetailsPageComponent implements OnInit {
     sku: string;
     product: Product;
 
-    constructor(private route: ActivatedRoute, private auth: AuthService, private productsService: ProductsService) {    }
+    constructor(private route: ActivatedRoute, 
+                private auth: AuthService,
+                private productsService: ProductsService) {    }
 
     ngOnInit() {
         // let sku = this.route.params._value.sku;
@@ -26,6 +28,10 @@ export class ProductDetailsPageComponent implements OnInit {
             this.product = this.productsService.findProduct(sku);
         });
 
+    }
+
+    updateProduct(p: Product) {
+        this.productsService.updateProduct(p);
     }
 
     userIsAdmin() {
