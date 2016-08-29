@@ -15,7 +15,15 @@ export class ProductsService {
         return ProductsService.products.filter((p: Product) =>{return p.sku === sku}).pop();
     }
 
-    getProducts() {
+    getProducts(term?: string) {
+        if (term && term.length > 0) {
+            return ProductsService.products.filter((p: Product) => {
+                if (p.name.indexOf(term) !== -1) return true;
+                if (p.sku.indexOf(term) !== -1) return true;
+                return false;
+            });
+        }
+
         return ProductsService.products;
     }
 

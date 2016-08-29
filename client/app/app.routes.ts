@@ -13,6 +13,7 @@ import { ProductDetailsPageComponent } from './pages/productDetails/productDetai
 
 const appRoutes: Routes = [
     {path: 'browse', component: BrowsePageComponent, canActivate: [AuthGuard]  },
+    {path: 'browse/search/:term', component: BrowsePageComponent, canActivate: [AuthGuard]  },
     {path: 'users', component: UsersPageComponent, canActivate: [AuthGuard, AdminGuard]  },
     {path: 'new', component: NewProductPageComponent, canActivate: [AuthGuard, AdminGuard]  },
     {path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard]  },

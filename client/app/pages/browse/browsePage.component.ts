@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../products.service';
 import { Product } from '../../product.model';
-import { Router } from '@angular/router';
+import { Router, Params, ActivatedRoute } from '@angular/router';
 
 @Component({
     moduleId: module.id,
@@ -13,9 +13,11 @@ import { Router } from '@angular/router';
 })
 export class BrowsePageComponent implements OnInit {
     products: Product[] = [];
+    searchTerm: string;
 
     constructor(private productsService: ProductsService,
-                private router: Router) {
+                private router: Router,
+                private route: ActivatedRoute) {
         this.products = productsService.getProducts();
      }
 
@@ -23,6 +25,11 @@ export class BrowsePageComponent implements OnInit {
         this.router.navigate(['browse', sku]);
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+         this.route.params.forEach((params: Params) => {
+            this.searchTerm = params['term'];
+            this.products = this.productsService.getProducts(this.searchTerm);
+         });
+    }
 
 }

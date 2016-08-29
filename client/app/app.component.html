@@ -22,14 +22,17 @@
         </ul>
         <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
+                <input type="text" class="form-control" placeholder="Search" name="term" #termField>
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="submit" class="btn btn-default" (click)="searchFor(termField.value)">Submit</button>
         </form>
         <ul class="nav navbar-nav navbar-right">
             <!--<li><a routerLink="/login"><span class="glyphicon glyphicon-user"></span>Log in</a></li>-->
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    
+                    <span *ngIf="isAdmin()" class="label label-default">admin</span>
+                    
                     <span class="glyphicon glyphicon-user"></span>{{userEmail()}} <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
