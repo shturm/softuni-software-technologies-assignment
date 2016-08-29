@@ -1,7 +1,7 @@
 <div class="row">
 
     <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
-        <form action="" method="POST" role="form">
+        <form #f="ngForm" (ngSubmit)="submitProduct(f.value)">
 
             
             <label for="sku">SKU</label>
@@ -23,7 +23,7 @@
             </div>
 
             <div class="btn-group btn-group-lg" role="group" aria-label="..." *ngIf="editable">
-                <button type="button" class="btn btn-success">Save</button>
+                <button type="submit" class="btn btn-success">Save</button>
             </div>
 
         </form>
