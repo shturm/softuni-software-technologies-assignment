@@ -1,4 +1,5 @@
 import { NgModule }      from '@angular/core';
+import { HttpModule }      from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 
@@ -18,7 +19,7 @@ import { UsersPageComponent } from './pages/users/usersPage.component';
 
 
 @NgModule({
-  imports: [ BrowserModule, FormsModule, routing],
+  imports: [ BrowserModule, FormsModule, HttpModule, routing],
   providers: [AuthService, AuthGuard, AdminGuard],
   declarations: [ 
     // main

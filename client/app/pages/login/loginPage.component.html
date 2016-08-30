@@ -3,6 +3,11 @@
         <form #f="ngForm" (ngSubmit)="logIn(f.value)">
             <legend>Login</legend>
 
+            
+            <div class="alert alert-danger" *ngIf="errorMessage">
+                <strong>Error</strong> {{errorMessage}}
+            </div>
+            
             <div class="form-group form-group-lg">
                 <label for="">Email</label>
                 <input type="email" class="form-control" name="email" ngModel placeholder="email@domain.tld" required>
