@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MonoWebApi.Infrastructure
 {
@@ -68,5 +69,15 @@ namespace MonoWebApi.Infrastructure
 
             return _database.Execute(commandText, parameters);
         }
-    }
+
+		internal int DeleteRoleFromUser (string userId, string roleId)
+		{
+			string commandText = "Delete from UserRoles where UserId = @userId and RoleId = @roleId";
+			Dictionary<string, object> parameters = new Dictionary<string, object> ();
+			parameters.Add ("UserId", userId);
+			parameters.Add ("RoleId", roleId);
+
+			return _database.Execute (commandText, parameters);
+		}
+	}
 }

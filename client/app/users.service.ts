@@ -40,11 +40,31 @@ export class UsersService {
         return result;
     }
 
-    setUserAdmin(email: string, adminFlag: boolean) {
-        UsersService.users.forEach((u: any) => {
-            if (u.email === email) {
-                u.admin = adminFlag;
-            }
+    setUserAdmin(email: string, flag: boolean): Observable<any> {
+        let result = new Observable<any>((sub: Subscriber<any>) => {
+            let headers = new Headers();
+            this.auth.authorizeHeaders(headers);
+            // headers.append('Content-Type', 'application/x-www-form-urlencoded');
+            let opts: RequestOptionsArgs = {headers: headers};
+            let data = {email: email, flag: flag};
+
+            this.http.post('http://localhost:8080/api/accounts/setAdmin', data, opts).subscribe(r => {
+                sub.next();
+            }, () => {
+                sub.error();
+            });
         });
+
+        return result;
+    }
+
+    private objectToQueryString(obj: any) {
+        let parts: any[] = [];
+        for (let i in obj) {
+            if (obj.hasOwnProperty(i)) {
+                parts.push(encodeURIComponent(i) + '=' + encodeURIComponent(obj[i]));
+            }
+        }
+        return parts.join('&');
     }
 }

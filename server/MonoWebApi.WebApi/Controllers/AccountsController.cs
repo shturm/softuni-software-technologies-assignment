@@ -70,6 +70,21 @@ namespace MonoWebApi.Infrastructure.WebApi.Controllers
 			return Ok (userDtos);
 		}
 
+		[HttpPost]
+		[Authorize (Roles = "Admin")]
+		public IHttpActionResult SetAdmin(PromoteDemoteAdminUserCommand command) {
+			var userManager = new UserManager ();
+			var user = userManager.FindByName (command.Email);
+
+			if (command.Flag) {
+				userManager.AddToRole (user.Id, "Admin");
+			} else {
+				userManager.RemoveFromRole (user.Id, "Admin");
+			}
+
+			return Ok ();
+		}
+
 		private IHttpActionResult GetErrorResult (IdentityResult result)
 		{
 			if (result == null) {

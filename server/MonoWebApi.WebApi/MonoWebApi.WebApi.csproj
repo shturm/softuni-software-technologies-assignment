@@ -118,6 +118,7 @@
     <Compile Include="Commands\RegisterCommand.cs" />
     <Compile Include="Controllers\SecretController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Commands\PromoteDemoteUserCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />

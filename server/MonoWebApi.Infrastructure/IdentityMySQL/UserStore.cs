@@ -377,7 +377,10 @@ namespace MonoWebApi.Infrastructure
         /// <returns></returns>
         public Task RemoveFromRoleAsync(IdentityUser user, string role)
         {
-            throw new NotImplementedException();
+			return Task.Run (() => {
+				string roleId = roleTable.GetRoleByName (role).Id;
+				userRolesTable.DeleteRoleFromUser (user.Id, roleId);
+			});
         }
 
         /// <summary>

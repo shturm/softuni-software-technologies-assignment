@@ -24,12 +24,14 @@ export class UsersPageComponent implements OnInit {
         if (!flag) msg = 'Demote user from admin ?';
 
         if (confirm(msg)) {
-            this.usersService.setUserAdmin(email, flag);
+            this.usersService.setUserAdmin(email, flag).subscribe(() => {
+                this.usersService.getUsers().subscribe(users=> {
+                    this.users = users;
+                });
+            });
         }
 
-        this.usersService.getUsers().subscribe(users=> {
-            this.users = users;
-        });
+        
     }
 
 }
