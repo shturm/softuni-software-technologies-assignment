@@ -18,22 +18,26 @@ export class BrowsePageComponent implements OnInit {
     constructor(private productsService: ProductsService,
                 private router: Router,
                 private route: ActivatedRoute) {
-        productsService.getProducts().subscribe(products => {
-            this.products = products;
-        });
-     }
+    }
 
     gotoProduct(sku: string) {
         this.router.navigate(['browse', sku]);
     }
 
     ngOnInit() {
-         this.route.params.forEach((params: Params) => {
+        this.route.params.forEach((params: Params) => {
             this.searchTerm = params['term'];
-            this.productsService.getProducts(this.searchTerm).subscribe(products => {
+        });
+
+        this.productsService.getProducts(this.searchTerm).subscribe(products => {
+            this.products = products;
+        });
+
+        ProductsService.searchEvent.subscribe((term: string) => {
+            this.productsService.getProducts(term).subscribe(products => {
                 this.products = products;
             });
-         });
+        });
     }
 
 }
