@@ -109,5 +109,11 @@ namespace MonoWebApi.Domain
 		{
 			return _productRepository.Get (p => p.SKU == sku).FirstOrDefault ();
 		}
+
+		public void DeleteById (int productId)
+		{
+			var product = _productRepository.Get (p => p.Id == productId).FirstOrDefault ();
+			_productRepository.Delete (product);
+		}
 	}
 }

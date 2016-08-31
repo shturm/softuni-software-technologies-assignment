@@ -13,5 +13,6 @@ namespace MonoWebApi.Domain
 		void Update (Product p);
 		IEnumerable<Product> GetAll (string searchTerm = null);
 		Product FindBySku (string sku);
-}
+		void DeleteById (int productId);
+	}
 }

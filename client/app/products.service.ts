@@ -84,6 +84,23 @@ export class ProductsService {
         return result;
     }
 
+    deleteProduct(p: Product): Observable<any> {
+        let result = new Observable<any>((sub: Subscriber<any>) => {
+            let headers = new Headers();
+            this.auth.authorizeHeaders(headers);
+            let opts: RequestOptionsArgs = {headers: headers};
+
+            this.http.delete('http://localhost:8080/api/product?productId='+p.id ,opts).subscribe(r => {
+               sub.next(r);
+            }, e => {
+               sub.error(e);
+               console.log(e);
+            });
+        });
+
+        return result;
+    }
+
     private objectToQueryString(obj: any) {
         let parts: any[] = [];
         for (let i in obj) {

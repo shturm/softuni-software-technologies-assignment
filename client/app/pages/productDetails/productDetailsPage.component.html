@@ -3,7 +3,6 @@
 <h3>{{sku}}</h3>
 <app-product *ngIf="product" [editable]="userIsAdmin()" [product]="product" (onSubmit)="updateProduct($event)"></app-product>
 
-
 <div class="container">
     
     <div class="row" *ngIf="!product">

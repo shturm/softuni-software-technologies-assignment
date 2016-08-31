@@ -10,13 +10,16 @@
                         <th>SKU</th>
                         <th>Name</th>
                         <th>Price</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let p of products" (click)="gotoProduct(p.sku)">
+                    <tr *ngFor="let p of products">
                         <td>{{p.sku}}</td>
                         <td>{{p.name}}</td>
                         <td>{{p.price}}</td>
+                        <td><button type="button" (click)="deleteProduct(p)" class="btn btn-danger">Delete</button></td>
+                        <td><button type="button" (click)="gotoProduct(p.sku)" class="btn btn-default">Details</button></td>
                     </tr>
                 </tbody>
             </table>

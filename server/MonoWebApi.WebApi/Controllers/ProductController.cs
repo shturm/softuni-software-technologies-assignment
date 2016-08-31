@@ -63,6 +63,15 @@ namespace MonoWebApi.Infrastructure.WebApi.Controllers
 			return products;
 		}
 
+		[HttpDelete]
+		[Route ("api/product")]
+		[Authorize(Roles="Admin")]
+		public IHttpActionResult DeleteProduct([FromUri]int productId)
+		{
+			_productService.DeleteById (productId);
+			return Ok ();
+		}
+
 		[HttpPost]
 		[Route ("api/product/{productId}/image")]
 		public Task<List<int>> AddImagesToProduct (int productId, bool isThumbnail = false)

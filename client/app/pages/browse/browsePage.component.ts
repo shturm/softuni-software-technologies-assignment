@@ -39,5 +39,14 @@ export class BrowsePageComponent implements OnInit {
             });
         });
     }
-
+    
+    deleteProduct(p: Product) {
+        this.productsService.deleteProduct(p).subscribe(() => {
+            this.products.forEach((prod,index) => {
+                if (p.id === prod.id) {
+                    this.products.splice(index,1);
+                }
+            });
+        });
+    }
 }

@@ -37,7 +37,6 @@ export class ProductDetailsPageComponent implements OnInit {
         this.productsService.updateProduct(p).subscribe(() => {
             this.router.navigate(['browse']);
         });
-        
     }
 
     userIsAdmin() {
