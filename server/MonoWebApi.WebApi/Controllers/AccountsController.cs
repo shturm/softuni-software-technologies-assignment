@@ -18,7 +18,8 @@ namespace MonoWebApi.Infrastructure.WebApi.Controllers
 		//	_userManager = userManager;
 		//}
 
-		public IHttpActionResult Get ()
+		[HttpGet]
+		public IHttpActionResult WhoAmI ()
 		{
 			
 			return Ok (new {

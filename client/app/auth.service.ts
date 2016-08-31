@@ -22,7 +22,6 @@ export class AuthService {
     }
 
     login(email: string, password: string): Observable<string> {
-        // mock
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         let requestOptionsArgs: RequestOptionsArgs = {headers: headers};
@@ -42,7 +41,7 @@ export class AuthService {
                     // who am i
                     let whoamiHeaders = new Headers();
                     whoamiHeaders.append('Authorization', "Bearer "+token);
-                    this.http.get('http://localhost:8080/api/accounts', {headers: whoamiHeaders}).subscribe(
+                    this.http.get('http://localhost:8080/api/accounts/whoami', {headers: whoamiHeaders}).subscribe(
                         (res) => {
                             if (res.json().isAdmin) {
                                 localStorage.setItem('user.admin', "admin");
