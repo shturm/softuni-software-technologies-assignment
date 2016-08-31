@@ -32,6 +32,19 @@ namespace MonoWebApi.Infrastructure.WebApi.Controllers
 		}
 
 		[HttpPost]
+		[Authorize]
+		public IHttpActionResult ChangeEmail(ChangeEmailCommand command)
+		{
+			var userManager = new UserManager ();
+			var user = userManager.FindByName (User.Identity.Name);
+
+			user.UserName = command.Email;
+			userManager.Update (user);
+
+			return Ok ();
+		}
+
+		[HttpPost]
 		//[Route("api/accounts/register")]
 		public async Task<IHttpActionResult> Register ([FromBody]RegisterCommand registerCommand)
 		{

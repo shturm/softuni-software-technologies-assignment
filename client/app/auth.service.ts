@@ -105,7 +105,16 @@ export class AuthService {
     }
 
     updateProfile(profile: {email: string}) {
-        localStorage.setItem('user.email', profile.email);
+        let headers = new Headers();
+        this.authorizeHeaders(headers);
+        let opts: RequestOptionsArgs = {headers: headers};
+        // headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        // let data = this.objectToQueryString({email: profile.email});
+        let data = {email: profile.email};
+
+        this.http.post('http://localhost:8080/api/accounts/changeEmail', data, opts).subscribe(r => {
+            localStorage.setItem('user.email', profile.email);
+        });
     }
 
     isAdmin() {

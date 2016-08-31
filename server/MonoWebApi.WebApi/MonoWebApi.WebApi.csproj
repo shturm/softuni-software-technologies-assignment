@@ -118,7 +118,8 @@
     <Compile Include="Commands\RegisterCommand.cs" />
     <Compile Include="Controllers\SecretController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Commands\PromoteDemoteUserCommand.cs" />
+    <Compile Include="Commands\PromoteDemoteAdminUserCommand.cs" />
+    <Compile Include="Commands\ChangeEmailCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
