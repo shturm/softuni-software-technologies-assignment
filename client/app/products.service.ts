@@ -64,14 +64,15 @@ export class ProductsService {
 
     updateProduct(p: Product): Observable<any> {
 
-        let result = new Observable<Product[]>((sub: Subscriber<Product[]>) => {
+        let result = new Observable<any>((sub: Subscriber<any>) => {
             let headers = new Headers();
             this.auth.authorizeHeaders(headers);
             let opts: RequestOptionsArgs = {headers: headers};
 
             this.http.put('http://localhost:8080/api/product', p, opts).subscribe(r => {
-               sub.next(r.json());
+               sub.next(r);
             }, e => {
+               sub.error(e);
                console.log(e);
             });
         });
