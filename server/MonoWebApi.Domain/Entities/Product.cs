@@ -6,7 +6,10 @@ namespace MonoWebApi.Domain.Entities
 {
 	public class Product : BaseEntity
 	{
+		public virtual string SKU { get; set; }
 		public virtual string Name { get; set; }
+		public virtual int Price { get; set; }
+
 		public virtual string Description { get; set; }
 		public virtual IList<Image> Photos { get; set; }
 		public virtual Image Thumbnail { get; set; }

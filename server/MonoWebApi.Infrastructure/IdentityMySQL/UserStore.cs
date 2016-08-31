@@ -14,7 +14,8 @@ namespace MonoWebApi.Infrastructure
                              IUserClaimStore<IdentityUser>, 
                              IUserLoginStore<IdentityUser>, 
                              IUserRoleStore<IdentityUser>, 
-                             IUserPasswordStore<IdentityUser>
+                             IUserPasswordStore<IdentityUser>,
+							 IQueryableUserStore<IdentityUser>
     {
         private UserTable userTable;
         private RoleTable roleTable;
@@ -23,10 +24,16 @@ namespace MonoWebApi.Infrastructure
         private UserLoginsTable userLoginsTable; 
         public MySQLDatabase Database { get; private set; }
 
-        /// <summary>
-        /// Default constructor that initializes a new MySQLDatabase
-        /// instance using the Default Connection string
-        /// </summary>
+		public IQueryable<IdentityUser> Users {
+			get {
+				return userTable.GetAll ().AsQueryable ();
+			}
+		}
+
+		/// <summary>
+		/// Default constructor that initializes a new MySQLDatabase
+		/// instance using the Default Connection string
+		/// </summary>
 		public UserStore() : this(new MySQLDatabase())
         {
             

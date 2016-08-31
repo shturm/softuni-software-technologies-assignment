@@ -11,5 +11,7 @@ namespace MonoWebApi.Domain
 		void SetThumbnail (int productId, Image image);
 		void ChangeThumbnail (int productId, int photoIndex);
 		void Update (Product p);
-	}
+		IEnumerable<Product> GetAll (string searchTerm = null);
+		Product FindBySku (string sku);
+}
 }

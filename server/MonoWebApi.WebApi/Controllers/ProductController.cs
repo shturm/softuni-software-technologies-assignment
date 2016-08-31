@@ -16,6 +16,7 @@ using System.Collections.Generic;
 
 namespace MonoWebApi.Infrastructure.WebApi.Controllers
 {
+	[Authorize (Roles = "Admin")]
 	public class ProductController : ApiController
 	{
 		IProductService _productService;
@@ -27,43 +28,11 @@ namespace MonoWebApi.Infrastructure.WebApi.Controllers
 
 		[HttpPost]
 		[Route("api/product")]
-		public async Task<Product> CreateProduct ()
+		public Product CreateProduct (Product prod)
 		{
-			// Check if the request contains multipart/form-data.
-			if (!Request.Content.IsMimeMultipartContent ()) {
-				throw new HttpResponseException (HttpStatusCode.UnsupportedMediaType);
-			}
+			_productService.Update (prod);
 
-			//string root = HttpContext.Current.Server.MapPath ("~/App_Data");
-			string root = "/tmp/daidakaram";
-			if (!Directory.Exists (root))
-				Directory.CreateDirectory (root);
-
-			var streamProvider = new MultipartFormDataStreamProvider (root);
-
-			// Read the form data and return an async task.
-			var resultTask = await Request.Content.ReadAsMultipartAsync (streamProvider) // read data from request
-				.ContinueWith (streamReadingTask => {
-					if (streamReadingTask.IsFaulted || streamReadingTask.IsCanceled) {
-						Request.CreateErrorResponse (HttpStatusCode.InternalServerError, streamReadingTask.Exception);
-					}
-
-					List<Image> photos = streamReadingTask.Result.FileData
-												  .Where (f => f.Headers.ContentDisposition.Name.Replace (@"""", "").Replace (@"\", "") == "photos")
-												  .Select (f => new Image () { Bytes = File.ReadAllBytes (f.LocalFileName) }).ToList ();
-					var name = streamReadingTask.Result.FormData ["name"];
-					var description = streamReadingTask.Result.FormData ["description"];
-					Image thumb = streamReadingTask.Result.FileData
-												   .Where (f => f.Headers.ContentDisposition.FileName == streamReadingTask.Result.FormData ["thumbnail"])
-												   .Select (f => new Image () { Bytes = File.ReadAllBytes (f.LocalFileName) })
-												   .FirstOrDefault ();
-
-					var resultProduct = _productService.Create (name, description, photos, thumb);
-
-					return resultProduct;
-				});
-
-			return resultTask;
+			return prod;
 		}
 
 		[HttpDelete]
@@ -76,6 +45,22 @@ namespace MonoWebApi.Infrastructure.WebApi.Controllers
 			} catch (StaleStateException ex) {
 				return NotFound ();
 			}
+		}
+
+		[HttpGet]
+		[Route("api/product")]
+		public Product GetBySku([FromUri]string sku)
+		{
+			return _productService.FindBySku (sku);
+		}
+
+		[HttpGet]
+		[Route ("api/product")]
+		[Authorize]
+		public IEnumerable<Product> GetAll ([FromUri]string term = null)
+		{
+			IEnumerable<Product> products = _productService.GetAll (term);
+			return products;
 		}
 
 		[HttpPost]
@@ -127,6 +112,13 @@ namespace MonoWebApi.Infrastructure.WebApi.Controllers
 		public void UpdateProduct (Product p)
 		{
 			_productService.Update (p);
+
+			// NHibernate automapping wont work because SKU is not PK
+			// and its not worth doing automatic mapping for 2 properties
+			//var product = _productService.FindBySku (p.SKU);
+			//product.Name = p.Name;
+			//product.Price = p.Price;
+			//_productService.Update (product);
 		}
 	}
 }

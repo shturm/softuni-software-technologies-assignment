@@ -94,5 +94,20 @@ namespace MonoWebApi.Domain
 		{
 			_productRepository.Update (p);
 		}
+
+		public IEnumerable<Product> GetAll (string searchTerm = null)
+		{
+			if (searchTerm != null) {
+				return _productRepository.Get (p => p.Name.Contains (searchTerm));
+			} else {
+				return _productRepository.GetAll ();
+			}
+
+		}
+
+		public Product FindBySku (string sku)
+		{
+			return _productRepository.Get (p => p.SKU == sku).FirstOrDefault ();
+		}
 	}
 }

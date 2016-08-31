@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 
 namespace MonoWebApi.Infrastructure.WebApi.Controllers
 {
+	using System.Linq;
 	using System.Web.Http.Cors;
 	using UserManager = MonoWebApi.Infrastructure.UserManager;
 
@@ -51,6 +52,22 @@ namespace MonoWebApi.Infrastructure.WebApi.Controllers
 			//userManager.AddToRole (user.Id, "Admin");
 
 			return Ok (new { message = "Success" });
+		}
+
+		[HttpGet]
+		[Authorize(Roles = "Admin")]
+		public IHttpActionResult GetAll() {
+			var userManager = new UserManager ();
+
+			var allUsers = userManager.Users.ToList ();
+
+			var userDtos = allUsers.Select (u => new {
+				Id=u.Id,
+				Email=u.UserName,
+				IsAdmin=userManager.IsInRole(u.Id, "Admin")
+			});
+
+			return Ok (userDtos);
 		}
 
 		private IHttpActionResult GetErrorResult (IdentityResult result)

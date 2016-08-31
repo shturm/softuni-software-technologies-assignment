@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { UsersService } from '../../users.service';
+import { User } from '../../user.model';
 
 @Component({
     moduleId: module.id,
@@ -8,23 +9,15 @@ import { UsersService } from '../../users.service';
     providers: [UsersService]
 })
 export class UsersPageComponent implements OnInit {
-    users: Array<any>;
+    users: Array<User>;
     
     constructor(private usersService: UsersService) { }
 
     ngOnInit() {
-        this.users = this.usersService.getUsers();
+        this.usersService.getUsers().subscribe(users=> {
+            this.users = users;
+        });
      }
-
-    setUserActive(email: string, flag: boolean) {
-        let msg = 'Activate user ?';
-        if (!flag) msg = 'Deactivate user ?';
-        if (confirm(msg)) {
-            this.usersService.setUserActive(email, flag);
-        }
-
-        this.users = this.usersService.getUsers();
-    }
 
     setUserAdmin(email: string, flag: boolean) {
         let msg: string = 'Promote user to admin ?';
@@ -33,8 +26,10 @@ export class UsersPageComponent implements OnInit {
         if (confirm(msg)) {
             this.usersService.setUserAdmin(email, flag);
         }
-        
-        this.users = this.usersService.getUsers();
+
+        this.usersService.getUsers().subscribe(users=> {
+            this.users = users;
+        });
     }
 
 }

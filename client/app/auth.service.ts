@@ -2,9 +2,6 @@ import { Injectable } from '@angular/core';
 
 import { Http, Headers, Response, RequestOptionsArgs } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/catch';
-
 import { Subscriber } from 'rxjs/Subscriber';
 import { Router } from '@angular/router';
 
@@ -20,6 +17,9 @@ export class AuthService {
         return result;
     }
 
+    authorizeHeaders(headers: Headers) {
+        headers.append('Authorization', "Bearer "+localStorage.getItem('token'));
+    }
 
     login(email: string, password: string): Observable<string> {
         // mock

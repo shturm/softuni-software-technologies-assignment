@@ -17,7 +17,11 @@ export class NewProductPageComponent {
                 private router: Router) { }
 
     createProduct(p: Product) {
-        this.productsService.createProduct(p);
-        this.router.navigate(['browse']);
+        this.productsService.createProduct(p).subscribe(()=>{
+            this.router.navigate(['browse']);
+        }, ()=>{
+            console.log('could not create product');
+        });
+        
     }
 }

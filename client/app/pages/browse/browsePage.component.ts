@@ -18,7 +18,9 @@ export class BrowsePageComponent implements OnInit {
     constructor(private productsService: ProductsService,
                 private router: Router,
                 private route: ActivatedRoute) {
-        this.products = productsService.getProducts();
+        productsService.getProducts().subscribe(products => {
+            this.products = products;
+        });
      }
 
     gotoProduct(sku: string) {
@@ -28,7 +30,9 @@ export class BrowsePageComponent implements OnInit {
     ngOnInit() {
          this.route.params.forEach((params: Params) => {
             this.searchTerm = params['term'];
-            this.products = this.productsService.getProducts(this.searchTerm);
+            this.productsService.getProducts(this.searchTerm).subscribe(products => {
+                this.products = products;
+            });
          });
     }
 

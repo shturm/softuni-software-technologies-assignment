@@ -14,8 +14,8 @@ export class ProductComponent implements OnInit{
     @Output()
     onSubmit = new EventEmitter<Product>();
 
-    submitProduct(product: Product) {
-        this.onSubmit.emit(product);
+    submitProduct() {
+        this.onSubmit.emit(this.product);
         this.product = new Product('',0,'');
     }
 

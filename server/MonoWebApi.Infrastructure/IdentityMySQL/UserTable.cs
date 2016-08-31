@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MonoWebApi.Infrastructure
 {
@@ -31,12 +32,34 @@ namespace MonoWebApi.Infrastructure
             return _database.GetStrValue(commandText, parameters);
         }
 
-        /// <summary>
-        /// Returns a User ID given a user name
-        /// </summary>
-        /// <param name="userName">The user's name</param>
-        /// <returns></returns>
-        public string GetUserId(string userName)
+		public List<IdentityUser> GetAll ()
+		{
+			List<IdentityUser> users = new List<IdentityUser> ();
+			string commandText = "Select * from Users";
+			Dictionary<string, object> parameters = new Dictionary<string, object> ();
+
+			var rows = _database.Query (commandText, parameters);
+			if (rows != null && rows.Count > 0) {
+				foreach (var row in rows) {
+					var user = new IdentityUser ();
+					user.Id = row ["Id"];
+					user.UserName = row ["UserName"];
+					user.PasswordHash = string.IsNullOrEmpty (row ["PasswordHash"]) ? null : row ["PasswordHash"];
+					user.SecurityStamp = string.IsNullOrEmpty (row ["SecurityStamp"]) ? null : row ["SecurityStamp"];
+					users.Add (user);
+				}	
+			}
+
+
+			return users;
+		}
+
+		/// <summary>
+		/// Returns a User ID given a user name
+		/// </summary>
+		/// <param name="userName">The user's name</param>
+		/// <returns></returns>
+		public string GetUserId(string userName)
         {
             string commandText = "Select Id from Users where UserName = @name";
             Dictionary<string, object> parameters = new Dictionary<string, object>() { { "@name", userName } };

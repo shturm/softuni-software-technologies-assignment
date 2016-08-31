@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 
 import {ProductComponent} from '../../components/product/product.component';
@@ -16,7 +16,8 @@ export class ProductDetailsPageComponent implements OnInit {
     sku: string;
     product: Product;
 
-    constructor(private route: ActivatedRoute, 
+    constructor(private route: ActivatedRoute,
+                private router: Router, 
                 private auth: AuthService,
                 private productsService: ProductsService) {    }
 
@@ -25,13 +26,18 @@ export class ProductDetailsPageComponent implements OnInit {
         // this.product = this.productsService.findProduct(sku);
         this.route.params.forEach((params: Params) => {
             let sku = params['sku'];
-            this.product = this.productsService.findProduct(sku);
+            this.productsService.findProduct(sku).subscribe(p => {
+                this.product = p;
+            });
         });
 
     }
 
     updateProduct(p: Product) {
-        this.productsService.updateProduct(p);
+        this.productsService.updateProduct(p).subscribe(() => {
+            this.router.navigate(['browse']);
+        });
+        
     }
 
     userIsAdmin() {
