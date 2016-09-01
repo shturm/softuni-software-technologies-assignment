@@ -28,8 +28,3 @@
 	- `UserManager`, `RoleStore`, `UserStore` custom implemented for MySQL compatibility
 
 	- OAuth 2.0 Bearer token authentication
-
-#### Domain namespace has no external dependencies
-![ddd](https://github.com/shturm/softuni-software-technologies-assignment/blob/master/server/DDDStyle-OnionArchitecture.png?raw=true)
-#### ASP.NET Identity interface implementation
-![aspnet identity](https://raw.githubusercontent.com/shturm/softuni-software-technologies-assignment/master/server/AspNet.Identity.MySQL.min.png)

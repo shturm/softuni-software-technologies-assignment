@@ -6,10 +6,10 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(private auth: AuthService,
-              private router: Router) { }
+    private router: Router) { }
 
-  canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot): boolean {
-    
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+
     if (this.auth.isLoggedIn()) {
       return true;
     }
@@ -21,9 +21,9 @@ export class AuthGuard implements CanActivate {
 @Injectable()
 export class AdminGuard implements CanActivate {
   constructor(private auth: AuthService,
-              private router: Router) { }
+    private router: Router) { }
 
-  canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot): boolean {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (!this.auth.isAdmin()) {
       alert('To access this page you need to be admin');
       return false;
@@ -32,6 +32,5 @@ export class AdminGuard implements CanActivate {
     return true;
   }
 
-    
-  }
+
 }
